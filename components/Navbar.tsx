@@ -1,46 +1,126 @@
+// import { NAV_LINKS } from '@/constanst/Index'
+// import Image from 'next/image'
+// import Link from 'next/link'
+// import React ,{useEffect, useState} from 'react'
+// import Button from './Button'
+// import HamburgerMenu from './Hamburger'
+// import Hamburger from './Hamburger'
+
+// const Navbar = () => {
+//   return (
+
+//     // logo
+//    <nav className='flexBetween max-container padding-container relative z-30 py-5 '>
+//     <Link href={"/"}>
+//         <Image src="/Astro.svg" alt={'logo'} width={200} height={50}/>
+//     </Link>
+        
+
+//         {/* main options  */}
+//         <ul className='hidden h-full gap-12 lg:flex'>
+//             {NAV_LINKS.map((link) => (
+//                 <Link href={link.href} key={link.key} className='regular-16 text-grey-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold' >
+//                     {link.label}
+//                 </Link>
+//             ))}
+//         </ul>
+
+//                 {/* login button */}
+//         <div className='lg:flexCenter hidden '>
+//            <Button 
+//            type="button"
+//            title= 'Login'
+//            icon = '/user.svg'
+//            varient = 'btn_dark_green'
+//            />
+//         </div>
+//                     {/* hamburger */}
+
+//                     <Hamburger/>
+//         <Image 
+//         src='menu.svg'
+//         alt='menu'
+//         width={32}
+//         height={32} 
+//         className='inline-block cursor-pointer lg:hidden'
+       
+        
+//         />
+        
+    
+//    </nav>
+//   )
+// }
+// export default Navbar
+"use client";
 import { NAV_LINKS } from '@/constanst/Index'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import Button from './Button'
 
 const Navbar = () => {
-  return (
-   <nav className='flexBetween max-container padding-container relative z-30 py-5 '>
-    <Link href={"/"}>
-        <Image src="/Astro.svg" alt={'logo'} width={200} height={50}/>
-    </Link>
-        
-        <ul className='hidden h-full gap-12 lg:flex'>
-            {NAV_LINKS.map((link) => (
-                <Link href={link.href} key={link.key} className='regular-16 text-grey-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold' >
-                    {link.label}
-                </Link>
-            ))}
-        </ul>
+    const [isOpen, setIsOpen] = useState(false);
 
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    }
 
-        <div className='lg:flexCenter hidden '>
-           <Button 
-           type="button"
-           title= 'Login'
-           icon = '/user.svg'
-           varient = 'btn_dark_green'
-           />
-        </div>
+    return (
+        <nav className='flexBetween max-container padding-container relative z-30 py-5 '>
+            <Link href={"/"}>
+                <a><Image src="/Astro.svg" alt={'logo'} width={200} height={50} /></a>
+            </Link>
 
-        <Image 
-        src='menu.svg'
-        alt='menu'
-        width={32}
-        height={32}
-        className='inline-block cursor-pointer lg:hidden'
-        
-        />
-        
-    
-   </nav>
-  )
+            {/* main options */}
+            <ul className={`h-full gap-12 ${isOpen ? 'flex' : 'hidden'} lg:flex`}>
+                {NAV_LINKS.map((link) => (
+                    <li key={link.key}>
+                        <Link href={link.href}>
+                            <a className='regular-16 text-grey-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold'>
+                                {link.label}
+                            </a>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+
+            {/* login button */}
+            <div className='lg:flexCenter hidden '>
+                <Button
+                    type="button"
+                    title='Login'
+                    icon='/user.svg'
+                    varient='btn_dark_green'
+                />
+            </div>
+
+            {/* hamburger */}
+            <div onClick={toggleMenu} className='inline-block cursor-pointer lg:hidden'>
+                <Image
+                    src='menu.svg'
+                    alt='menu'
+                    width={32}
+                    height={32}
+                />
+            </div>
+
+            {/* Hamburger Menu */}
+            {isOpen && (
+                <div className="absolute top-0 left-0 w-full h-full bg-peach p-5">
+                    <ul className="space-y-4">
+                        {NAV_LINKS.map((link) => (
+                            <li key={link.key}>
+                                <Link href={link.href}>
+                                    <a className="text-black">{link.label}</a>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </nav>
+    )
 }
 
 export default Navbar

@@ -6,6 +6,7 @@ import Guide from '@/components/Guide'
 import GetApp from '@/components/GetApp'
 
 
+
 export default function Home() {
    return (
    <>
@@ -14,7 +15,7 @@ export default function Home() {
    
     <Guide/>
     <Feature/>
-    <GetApp/>
+
    </>
    )
 }

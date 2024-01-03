@@ -8,9 +8,11 @@ interface CampProps {
     mainText : string;
     secText : string;
     people : string;
+    width?: number; 
+    height?: number;
 }
 
-const Campsite = ({mainText, backgroundImage, secText, people} : CampProps) => {
+const Campsite = ({mainText, backgroundImage, secText, people,  width = 52, height = 52 } : CampProps) => {
     return (
         <div
             className={`h-full w-full min-w-[1100px] bg-cover bg-no-repeat lg:rounded-r-5xl 2xl:rounded-5xl `}
@@ -48,14 +50,15 @@ const Campsite = ({mainText, backgroundImage, secText, people} : CampProps) => {
 
 const Camp = () => {
     return (
-      <section className="2xl:max-container relative flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20">
-      <div className="hide-scrollbar flex h-[340px] w-full items-start justify-start gap-8 overflow-x-auto lg:h-[400px] xl:h-[640px]">
+      <section className="2xl:max-container relative flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20 ">
+      <div className=" hide-scrollbar object-left flex h-[340px] w-[100%] items-start justify-start gap-8 overflow-x-scroll lg:h-[400px] xl:h-[640px]">
 
                 <Campsite
                     backgroundImage="/img-1.png"
                     mainText={"Space"}
                     secText={"Endless journey"}
-                    people={"40+ joined"}/>
+                    people={"40+ joined"}
+                    />
                 <Campsite
                     backgroundImage="/img-2.png"
                     mainText={"Jupiter"}

@@ -40,7 +40,9 @@ const Guide = () => {
                     <Image src='/path2.svg' alt='route' width={90} height={140}/>
                     <div className="flexBetween flex-col ">
                         <div className='flex w-full flex-col mb-3'>
+                            <h4 className='bold-16 text-red-500'>This Could be You </h4>
                             <div className='flexBetween w-full gap-2'>
+                                
                                 <p className='regular-16 text-gray-20'>Destination
                                 </p>
                                 <p className='bold-16 text-green-50'>

@@ -7,6 +7,7 @@ export const NAV_LINKS = [
     { href: '/', key: 'News', label: 'News' },
   ];
   
+  
   // CAMP SECTION
   export const PEOPLE_URL = [
     '/person-1.png',
